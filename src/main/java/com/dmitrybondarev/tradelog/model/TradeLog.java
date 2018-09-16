@@ -29,7 +29,6 @@ public class TradeLog {
     }
 
     public List<Trade> getExchangeTradeLog(String exchange) {
-        List<Trade> exchangeLog = tradeLog.get(exchange);
-        return exchangeLog;
+        return tradeLog.get(exchange);
     }
 }
