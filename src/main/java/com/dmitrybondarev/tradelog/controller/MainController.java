@@ -3,7 +3,7 @@ package com.dmitrybondarev.tradelog.controller;
 import com.dmitrybondarev.tradelog.model.Interval;
 import com.dmitrybondarev.tradelog.model.TradeLog;
 import com.dmitrybondarev.tradelog.service.FrequencyAnalyzeService;
-import com.dmitrybondarev.tradelog.service.ReadCSW;
+import com.dmitrybondarev.tradelog.service.ReadCSV;
 import com.dmitrybondarev.tradelog.view.ConsoleView;
 import com.dmitrybondarev.tradelog.view.View;
 
@@ -14,7 +14,7 @@ public class MainController {
     private static final String PATH_TO_LOG = "TRD.csv";
 
     private void findOneSecondsWindows(TradeLog tradeLog,
-                                       ReadCSW readCSW,
+                                       ReadCSV readCSW,
                                        FrequencyAnalyzeService frequencyAnalyzeService,
                                        View view) {
 
@@ -29,7 +29,7 @@ public class MainController {
 
     public static void main(String[] args) {
         TradeLog tradeLog = new TradeLog();
-        ReadCSW readCSW = new ReadCSW();
+        ReadCSV readCSW = new ReadCSV();
         FrequencyAnalyzeService frequencyAnalyzeService = new FrequencyAnalyzeService();
         View view = new ConsoleView();
 
