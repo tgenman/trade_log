@@ -2,7 +2,7 @@ package com.dmitrybondarev.tradelog.controller;
 
 import com.dmitrybondarev.tradelog.model.Interval;
 import com.dmitrybondarev.tradelog.model.TradeLog;
-import com.dmitrybondarev.tradelog.service.FrequencyAnalyzeService;
+import com.dmitrybondarev.tradelog.service.FrequencyAnalysisService;
 import com.dmitrybondarev.tradelog.service.ReadCSV;
 import com.dmitrybondarev.tradelog.view.ConsoleView;
 import com.dmitrybondarev.tradelog.view.View;
@@ -15,26 +15,30 @@ public class MainController {
 
     public void findOneSecondsWindows(TradeLog tradeLog,
                                        ReadCSV readCSW,
-                                       FrequencyAnalyzeService frequencyAnalyzeService,
+                                       FrequencyAnalysisService frequencyAnalysisService,
                                        View view) {
 
         readCSW.readFromFile(PATH_TO_LOG, tradeLog);
 
         Map<String, Interval> oneSecondWindowMap =
-                frequencyAnalyzeService
+                frequencyAnalysisService
                         .findOneSecondWindowOfHighestFrequency(tradeLog);
 
         view.print(oneSecondWindowMap);
     }
 
+    /**
+     * Point to start program.
+     * @param args .
+     */
     public static void main(String[] args) {
         TradeLog tradeLog = new TradeLog();
         ReadCSV readCSW = new ReadCSV();
-        FrequencyAnalyzeService frequencyAnalyzeService = new FrequencyAnalyzeService();
+        FrequencyAnalysisService frequencyAnalysisService = new FrequencyAnalysisService();
         View view = new ConsoleView();
 
         MainController mainController = new MainController();
 
-        mainController.findOneSecondsWindows(tradeLog, readCSW, frequencyAnalyzeService, view);
+        mainController.findOneSecondsWindows(tradeLog, readCSW, frequencyAnalysisService, view);
     }
 }

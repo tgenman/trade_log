@@ -1,7 +1,14 @@
 package com.dmitrybondarev.tradelog.model;
 
-public class Trade implements Comparable {
+/**
+ * Class to contain information about trade.
+ */
+public class Trade {
 
+    /**
+     *Contain Time Stamp in String for simplicity.
+     * Convert to int when process TradeLog
+     */
     private final String time;
 
     private final double price;
@@ -39,16 +46,12 @@ public class Trade implements Comparable {
 
     @Override
     public String toString() {
-        return "Trade{" +
-                "time='" + time + '\'' +
-                ", price=" + price +
-                ", volume=" + volume +
-                ", exchange='" + exchange + '\'' +
-                '}';
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        return 0;
+        return "Trade{"
+                + "time='" + time + '\''
+                + ", price=" + price
+                + ", volume=" + volume
+                + ", exchange='" + exchange
+                + '\''
+                + '}';
     }
 }

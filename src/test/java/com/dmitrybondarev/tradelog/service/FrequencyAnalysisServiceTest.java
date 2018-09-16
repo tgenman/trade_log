@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import java.util.Map;
 
-public class FrequencyAnalyzeServiceTest {
+public class FrequencyAnalysisServiceTest {
 
     @Test
     public void  testFindOneSecondWindowOfHighestFrequency() {
@@ -29,10 +29,10 @@ public class FrequencyAnalyzeServiceTest {
         int numberOfTrade = 5;
 
 //      Test class
-        FrequencyAnalyzeService frequencyAnalyzeService = new FrequencyAnalyzeService();
+        FrequencyAnalysisService frequencyAnalysisService = new FrequencyAnalysisService();
 
 //      run
-        Map<String, Interval> inputMap = frequencyAnalyzeService.findOneSecondWindowOfHighestFrequency(tradeLog);
+        Map<String, Interval> inputMap = frequencyAnalysisService.findOneSecondWindowOfHighestFrequency(tradeLog);
 
 //      actual results
         Interval interval = inputMap.get("U");

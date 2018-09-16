@@ -1,5 +1,8 @@
 package com.dmitrybondarev.tradelog.model;
 
+/**
+ * Container to storage result of searching.
+ */
 public class Interval {
 
     private final String startInterval;

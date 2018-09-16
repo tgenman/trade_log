@@ -9,8 +9,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class FrequencyAnalyzeService {
+/**
+ * Service to find one second window in exchange.
+ */
+public class FrequencyAnalysisService {
 
+    /**
+     * Find one second window in exchange.
+     * Transform TradeLog to int[] of time stamps of trades.
+     * Search in int[] a second with the highest density.
+     * @param tradeLog data for analysis
+     * @return Map of results intervals
+     */
     public Map<String, Interval> findOneSecondWindowOfHighestFrequency(TradeLog tradeLog) {
         Map<String, Interval> result = new HashMap<>();
         TimeConverter timeConverter = new TimeConverter();
@@ -50,6 +60,12 @@ public class FrequencyAnalyzeService {
         return result;
     }
 
+    /**
+     * Transform List of Trades to int[] of time stamps of trades.
+     * @param exchangeTradeLog
+     * @param timeConverter
+     * @return int[] of time stamps of trades
+     */
     private int[] getArrayOfTimeStamps(List<Trade> exchangeTradeLog, TimeConverter timeConverter) {
         int[] timeStamps = new int[exchangeTradeLog.size()];
         int pointerTimeStamps = 0;

@@ -1,5 +1,8 @@
 package com.dmitrybondarev.tradelog.service;
 
+/**
+ * Class to convert time from int to String and String to int.
+ */
 public class TimeConverter {
 
     private static final int MINUTES_PER_HOUR = 60;
