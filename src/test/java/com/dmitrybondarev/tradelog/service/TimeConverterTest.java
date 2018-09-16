@@ -40,5 +40,4 @@ public class TimeConverterTest {
 //      assert
         Assert.assertEquals(expectedResult, actualResult);
     }
-
 }

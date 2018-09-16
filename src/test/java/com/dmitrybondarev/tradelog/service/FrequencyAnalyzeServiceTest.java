@@ -11,7 +11,8 @@ import java.util.Map;
 public class FrequencyAnalyzeServiceTest {
 
     @Test
-    public void  testReadFromFile() {
+    public void  testFindOneSecondWindowOfHighestFrequency() {
+//      Input values
         TradeLog tradeLog = new TradeLog();
         tradeLog.addTrade(new Trade("10:00:00.015", 1, 1, "U"));
         tradeLog.addTrade(new Trade("10:00:00.435", 1, 1, "U"));
@@ -44,5 +45,4 @@ public class FrequencyAnalyzeServiceTest {
         Assert.assertEquals(endInterval, actualEndInterval);
         Assert.assertEquals(numberOfTrade, actualNumberOfTrade);
     }
-
 }

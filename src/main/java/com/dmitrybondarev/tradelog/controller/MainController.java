@@ -13,7 +13,7 @@ public class MainController {
 
     private static final String PATH_TO_LOG = "TRD.csv";
 
-    private void findOneSecondsWindows(TradeLog tradeLog,
+    public void findOneSecondsWindows(TradeLog tradeLog,
                                        ReadCSV readCSW,
                                        FrequencyAnalyzeService frequencyAnalyzeService,
                                        View view) {
