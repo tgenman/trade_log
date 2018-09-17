@@ -22,7 +22,7 @@ public class MainController {
 
         Map<String, Interval> oneSecondWindowMap =
                 frequencyAnalysisService
-                        .findOneSecondWindowOfHighestFrequency(tradeLog);
+                        .findOneSecondWindowsOfAllExchanges(tradeLog);
 
         view.print(oneSecondWindowMap);
     }

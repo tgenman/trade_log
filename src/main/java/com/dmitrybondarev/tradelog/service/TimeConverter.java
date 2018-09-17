@@ -11,7 +11,7 @@ public class TimeConverter {
 
     private static final int MILLISECONDS_PER_SECONDS = 1000;
 
-    public int fromStringToInt(String timeString) {
+    public static int fromStringToInt(String timeString) {
         String[] split = timeString.split("[:.]");
         int hours = Integer.parseInt(split[0]);
         int minutes = Integer.parseInt(split[1]);
@@ -24,7 +24,7 @@ public class TimeConverter {
         return result;
     }
 
-    public String fromIntToString(int timeInt) {
+    public static String fromIntToString(int timeInt) {
         int remainder = timeInt;
 
         int hours = remainder / (MINUTES_PER_HOUR * SECONDS_PER_MINUTE * MILLISECONDS_PER_SECONDS);

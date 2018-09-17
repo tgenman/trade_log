@@ -21,59 +21,70 @@ public class FrequencyAnalysisService {
      * @param tradeLog data for analysis
      * @return Map of results intervals
      */
-    public Map<String, Interval> findOneSecondWindowOfHighestFrequency(TradeLog tradeLog) {
+    public Map<String, Interval> findOneSecondWindowsOfAllExchanges(TradeLog tradeLog) {
         Map<String, Interval> result = new HashMap<>();
-        TimeConverter timeConverter = new TimeConverter();
 
         Set<String> exchangeSet = tradeLog.getExchangesSet();
 
         for (String exchange : exchangeSet) {
             List<Trade> exchangeTradeLog = tradeLog.getExchangeTradeLog(exchange);
-            int size = exchangeTradeLog.size();
 
-            int[] timeStamps = getArrayOfTimeStamps(exchangeTradeLog, timeConverter);
+            int[] timeStamps = this.getIntArrayOfTimeStamps(exchangeTradeLog);
 
-            int startInterval = 0;
-            int numberOfTrades = 0;
+            Interval oneSecondWindow = this.findOneSecondWindowOfExchange(timeStamps);
 
-            for (int i = 0; i < size; i++) {
-                int currentStartInterval = timeStamps[i];
-                int currentEndInterval = currentStartInterval + 999;
-                int currentNumberOfTrades = 1;
-                for (int j = i + 1; j < size; j++) {
-                    if (timeStamps[j] <= currentEndInterval) {
-                        currentNumberOfTrades++;
-                    } else {
-                        if (currentNumberOfTrades > numberOfTrades) {
-                            startInterval = currentStartInterval;
-                            numberOfTrades = currentNumberOfTrades;
-                        }
-                        break;
-                    }
-                }
-            }
-            String startIntervalStr = timeConverter.fromIntToString(startInterval);
-            String endIntervalStr = timeConverter.fromIntToString(startInterval + 999);
-
-            result.put(exchange, new Interval(startIntervalStr, endIntervalStr, numberOfTrades));
+            result.put(exchange, oneSecondWindow);
         }
         return result;
+    }
+
+    private Interval findOneSecondWindowOfExchange(int[] timeStamps) {
+        int size = timeStamps.length;
+
+        int startInterval = 0;
+        int numberOfTrades = 0;
+
+        for (int i = 0; i < size; i++) {
+            int currentStartInterval = timeStamps[i];
+            int currentEndInterval = currentStartInterval + 999;
+            int currentNumberOfTrades = 1;
+            for (int j = i + 1; j < size; j++) {
+                if (timeStamps[j] <= currentEndInterval) {
+                    currentNumberOfTrades++;
+                } else {
+                    if (currentNumberOfTrades > numberOfTrades) {
+                        startInterval = currentStartInterval;
+                        numberOfTrades = currentNumberOfTrades;
+                    }
+                    break;
+                }
+            }
+        }
+
+        return this.fillInterval(startInterval, numberOfTrades);
+    }
+
+    private Interval fillInterval(int startInterval, int numberOfTrades) {
+        String startIntervalStr = TimeConverter.fromIntToString(startInterval);
+        String endIntervalStr = TimeConverter.fromIntToString(startInterval + 999);
+        return new Interval(startIntervalStr, endIntervalStr, numberOfTrades);
     }
 
     /**
      * Transform List of Trades to int[] of time stamps of trades.
      * @param exchangeTradeLog
-     * @param timeConverter
      * @return int[] of time stamps of trades
      */
-    private int[] getArrayOfTimeStamps(List<Trade> exchangeTradeLog, TimeConverter timeConverter) {
+    private int[] getIntArrayOfTimeStamps(List<Trade> exchangeTradeLog) {
         int[] timeStamps = new int[exchangeTradeLog.size()];
         int pointerTimeStamps = 0;
 
         for (Trade trade : exchangeTradeLog) {
             timeStamps[pointerTimeStamps++]
-                    = timeConverter.fromStringToInt(trade.getTime());
+                    = TimeConverter.fromStringToInt(trade.getTime());
         }
         return timeStamps;
     }
+
+
 }

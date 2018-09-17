@@ -14,7 +14,7 @@ public class ConsoleView implements View {
         for (String exchange : exchanges) {
             Interval oneSecondWindow = oneSecondWindowMap.get(exchange);
             String report =
-                    String.format("Exchange is %s, time interval = [%s - %s], number of trade = %s",
+                    String.format("Exchange is %s, time interval = [%s - %s], number of trades = %s",
                             exchange,
                             oneSecondWindow.getStartInterval(),
                             oneSecondWindow.getEndInterval(),

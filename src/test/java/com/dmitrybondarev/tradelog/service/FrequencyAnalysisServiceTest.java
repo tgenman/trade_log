@@ -32,7 +32,7 @@ public class FrequencyAnalysisServiceTest {
         FrequencyAnalysisService frequencyAnalysisService = new FrequencyAnalysisService();
 
 //      run
-        Map<String, Interval> inputMap = frequencyAnalysisService.findOneSecondWindowOfHighestFrequency(tradeLog);
+        Map<String, Interval> inputMap = frequencyAnalysisService.findOneSecondWindowsOfAllExchanges(tradeLog);
 
 //      actual results
         Interval interval = inputMap.get("U");
